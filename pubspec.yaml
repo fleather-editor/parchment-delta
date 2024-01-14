@@ -1,7 +1,7 @@
-name: quill_delta
+name: parchment_delta
 description: Simple and expressive format for describing rich-text content created for Quill.js editor. This package is unofficial port to Dart from JavaScript.
 version: 1.0.0
-homepage: https://github.com/fleather-editor/quill-delta.git
+homepage: https://github.com/fleather-editor/parchment-delta.git
 
 environment:
   sdk: '>=3.2.0 <4.0.0'

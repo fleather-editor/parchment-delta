@@ -8,7 +8,7 @@ Implementation of Quill editor Delta format in Dart. Refer to official
 ## Usage
 
 ```dart
-import 'package:quill_delta/quill_delta.dart';
+import 'package:parchment_delta/parchment_delta.dart';
 
 void main() {
   var doc = new Delta()..insert('Hello world', {'h': '1'});

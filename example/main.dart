@@ -1,4 +1,4 @@
-import 'package:quill_delta/quill_delta.dart';
+import 'package:parchment_delta/parchment_delta.dart';
 
 void main() {
   var doc = Delta()..insert('Hello world', {'h': '1'});

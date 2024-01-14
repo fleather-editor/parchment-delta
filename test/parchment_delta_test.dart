@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:quill_delta/quill_delta.dart';
+import 'package:parchment_delta/parchment_delta.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -297,16 +297,22 @@ void main() {
       });
 
       test('retain', () {
-        final delta = Delta()..retain(2)..retain(3, {'b': true});
+        final delta = Delta()
+          ..retain(2)
+          ..retain(3, {'b': true});
         final base = Delta()..insert('123456');
-        final expected = Delta()..retain(2)..retain(3, {'b': null});
+        final expected = Delta()
+          ..retain(2)
+          ..retain(3, {'b': null});
         final inverted = delta.invert(base);
         expect(expected, inverted);
         expect(base.compose(delta).compose(inverted), base);
       });
 
       test('retain on a delta with different attributes', () {
-        final base = Delta()..insert('123')..insert('4', {'b': true});
+        final base = Delta()
+          ..insert('123')
+          ..insert('4', {'b': true});
         final delta = Delta()..retain(4, {'i': true});
         final expected = Delta()..retain(4, {'i': null});
         final inverted = delta.invert(base);
@@ -345,20 +351,26 @@ void main() {
       // ==== insert combinations ====
 
       test('insert + insert', () {
-        final delta = Delta()..insert('abc')..insert('123');
+        final delta = Delta()
+          ..insert('abc')
+          ..insert('123');
         expect(delta.first, Operation.insert('abc123'));
       });
 
       test('insert + insert (object)', () {
         const data = {};
-        final delta = Delta()..insert('abc')..insert(data);
+        final delta = Delta()
+          ..insert('abc')
+          ..insert(data);
         expect(delta[0], Operation.insert('abc'));
         expect(delta[1], Operation.insert(data));
       });
 
       test('insert (object) + insert', () {
         const data = {};
-        final delta = Delta()..insert(data)..insert('abc');
+        final delta = Delta()
+          ..insert(data)
+          ..insert('abc');
         expect(delta[0], Operation.insert(data));
         expect(delta[1], Operation.insert('abc'));
       });
@@ -414,7 +426,9 @@ void main() {
       });
 
       test('delete + delete', () {
-        final delta = Delta()..delete(2)..delete(3);
+        final delta = Delta()
+          ..delete(2)
+          ..delete(3);
         expect(delta.first, Operation.delete(5));
       });
 
@@ -453,14 +467,18 @@ void main() {
       });
 
       test('retain + retain', () {
-        final delta = Delta()..retain(2)..retain(3);
+        final delta = Delta()
+          ..retain(2)
+          ..retain(3);
         expect(delta.first, Operation.retain(5));
       });
 
       // ==== edge scenarios ====
 
       test('consequent inserts with different attributes do not merge', () {
-        final delta = Delta()..insert('abc', const {'b': true})..insert('123');
+        final delta = Delta()
+          ..insert('abc', const {'b': true})
+          ..insert('123');
         expect(delta.toList(), [
           Operation.insert('abc', const {'b': true}),
           Operation.insert('123'),
@@ -468,7 +486,9 @@ void main() {
       });
 
       test('consequent inserts (object) do not merge', () {
-        final delta = Delta()..insert(const {})..insert(const {});
+        final delta = Delta()
+          ..insert(const {})
+          ..insert(const {});
         expect(delta.toList(), [
           Operation.insert(const {}),
           Operation.insert(const {}),
@@ -497,7 +517,9 @@ void main() {
       });
 
       test('consequent retain with different attributes do not merge', () {
-        final delta = Delta()..retain(5, const {'b': true})..retain(3);
+        final delta = Delta()
+          ..retain(5, const {'b': true})
+          ..retain(3);
         expect(delta.toList(), [
           Operation.retain(5, const {'b': true}),
           Operation.retain(3),
@@ -544,7 +566,9 @@ void main() {
           ..delete(2)
           ..insert('YATA');
         final result = doc.compose(change);
-        final expected = Delta()..insert('YATAYATA')..insert(const {});
+        final expected = Delta()
+          ..insert('YATAYATA')
+          ..insert(const {});
         expect(result, expected);
       });
     });
@@ -561,14 +585,18 @@ void main() {
       test('insert + insert (object)', () {
         final a = Delta()..insert('A');
         final b = Delta()..insert(const {});
-        final expected = Delta()..insert(const {})..insert('A');
+        final expected = Delta()
+          ..insert(const {})
+          ..insert('A');
         expect(a.compose(b), expected);
       });
 
       test('insert (object) + insert', () {
         final a = Delta()..insert(const {});
         final b = Delta()..insert('B');
-        final expected = Delta()..insert('B')..insert(const {});
+        final expected = Delta()
+          ..insert('B')
+          ..insert(const {});
         expect(a.compose(b), expected);
       });
 
@@ -686,7 +714,10 @@ void main() {
         final b = Delta()
           ..retain(3)
           ..insert(const {});
-        final expected = Delta()..insert('Hel')..insert(const {})..insert('lo');
+        final expected = Delta()
+          ..insert('Hel')
+          ..insert(const {})
+          ..insert('lo');
         expect(a.compose(b), expected);
       });
 
@@ -1090,9 +1121,13 @@ void main() {
       });
 
       test('start and end multiple chop', () {
-        var slice = (Delta()..insert('0123', {'bold': true})..insert('4567'))
+        var slice = (Delta()
+              ..insert('0123', {'bold': true})
+              ..insert('4567'))
             .slice(3, 5);
-        var expected = Delta()..insert('3', {'bold': true})..insert('4');
+        var expected = Delta()
+          ..insert('3', {'bold': true})
+          ..insert('4');
         expect(slice, expected);
       });
 
@@ -1128,15 +1163,19 @@ void main() {
       });
 
       test('split ops', () {
-        var slice =
-            (Delta()..insert('AB', {'bold': true})..insert('C')).slice(1, 2);
+        var slice = (Delta()
+              ..insert('AB', {'bold': true})
+              ..insert('C'))
+            .slice(1, 2);
         var expected = Delta()..insert('B', {'bold': true});
         expect(slice, expected);
       });
 
       test('split ops multiple times', () {
-        var slice =
-            (Delta()..insert('ABC', {'bold': true})..insert('D')).slice(1, 2);
+        var slice = (Delta()
+              ..insert('ABC', {'bold': true})
+              ..insert('D'))
+            .slice(1, 2);
         var expected = Delta()..insert('B', {'bold': true});
         expect(slice, expected);
       });
@@ -1254,7 +1293,9 @@ void main() {
       });
 
       test('inconvenient indexes', () {
-        final a = Delta()..insert('12', {'b': true})..insert('34', {'i': true});
+        final a = Delta()
+          ..insert('12', {'b': true})
+          ..insert('34', {'i': true});
         final b = Delta()..insert('123', {'bg': 'red'});
         final expected = Delta()
           ..retain(2, {'b': null, 'bg': 'red'})
@@ -1294,7 +1335,9 @@ void main() {
       });
 
       test('same document', () {
-        final a = Delta()..insert('A')..insert('B', {'b': true});
+        final a = Delta()
+          ..insert('A')
+          ..insert('B', {'b': true});
         final expected = Delta();
         expect(a.diff(a), expected);
       });
@@ -1322,7 +1365,12 @@ void main() {
 
     test('hasNext', () {
       expect(iterator.hasNext, isTrue);
-      iterator..next()..next()..next()..next()..next();
+      iterator
+        ..next()
+        ..next()
+        ..next()
+        ..next()
+        ..next();
       expect(iterator.hasNext, isFalse);
     });
 
