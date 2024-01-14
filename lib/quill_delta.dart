@@ -1,6 +1,3 @@
-// Copyright (c) 2018, Anatoly Pulyaevskiy. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
 /// Implementation of Quill Delta format in Dart.
 library quill_delta;
 
@@ -49,7 +46,7 @@ class Operation {
 
   /// Rich-text attributes set by this operation, can be `null`.
   Map<String, dynamic>? get attributes =>
-      _attributes == null ? null : Map<String, dynamic>.from(_attributes!);
+      _attributes == null ? null : Map<String, dynamic>.from(_attributes);
   final Map<String, dynamic>? _attributes;
 
   Operation._(this.key, this.length, this.data, Map? attributes)
@@ -121,7 +118,7 @@ class Operation {
   bool get isRetain => key == Operation.retainKey;
 
   /// Returns `true` if this operation has no attributes, e.g. is plain text.
-  bool get isPlain => (_attributes == null || _attributes!.isEmpty);
+  bool get isPlain => (_attributes == null || _attributes.isEmpty);
 
   /// Returns `true` if this operation sets at least one attribute.
   bool get isNotPlain => !isPlain;
@@ -155,9 +152,9 @@ class Operation {
 
   @override
   int get hashCode {
-    if (_attributes != null && _attributes!.isNotEmpty) {
+    if (_attributes != null && _attributes.isNotEmpty) {
       final attrsHash =
-          hashObjects(_attributes!.entries.map((e) => hash2(e.key, e.value)));
+          hashObjects(_attributes.entries.map((e) => hash2(e.key, e.value)));
       return hash3(key, value, attrsHash);
     }
     return hash2(key, value);
