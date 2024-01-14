@@ -1,4 +1,4 @@
-[![Build Status](https://www.travis-ci.com/pulyaevskiy/quill-delta-dart.svg?branch=master)](https://www.travis-ci.com/pulyaevskiy/quill-delta-dart) [![codecov](https://codecov.io/gh/pulyaevskiy/quill-delta-dart/branch/master/graph/badge.svg)](https://codecov.io/gh/pulyaevskiy/quill-delta-dart) [![Pub](https://img.shields.io/pub/v/quill_delta.svg)](https://pub.dev/packages/quill_delta)
+[![build](https://github.com/fleather-editor/parchment-delta/actions/workflows/build.yml/badge.svg)](https://github.com/fleather-editor/parchment-delta/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/fleather-editor/parchment-delta/graph/badge.svg?token=9JDVTZL4VA)](https://codecov.io/gh/fleather-editor/parchment-delta)
 
 Implementation of Quill editor Delta format in Dart. Refer to official
 [documentation][] for more details.
@@ -8,7 +8,7 @@ Implementation of Quill editor Delta format in Dart. Refer to official
 ## Usage
 
 ```dart
-import 'package:quill_delta/quill_delta.dart';
+import 'package:parchment_delta/parchment_delta.dart';
 
 void main() {
   var doc = new Delta()..insert('Hello world', {'h': '1'});
@@ -41,4 +41,4 @@ void main() {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: https://github.com/pulyaevskiy/quill-delta-dart/issues
+[tracker]: https://github.com/fleather-editor/parchment-delta/issues
