@@ -8,25 +8,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.16.6"
-          cache: true
-          # Manually Update this `key`
-          cache-key: "202401114"
+      - uses: dart-lang/setup-dart@v1
+      
       - run: dart pub global activate coverage
 
       - name: Install dependencies
-        run: flutter pub get
+        run: dart pub get
 
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Analyze project source
-        run: flutter analyze --fatal-infos
+        run: dart analyze --fatal-infos
 
       - name: Run tests
-        run: flutter test --coverage
+        run: |
+          dart test --coverage coverage
+          dart pub global run coverage:format_coverage --lcov --in ./coverage --out ./coverage/lcov.info --report-on:lib
 
       - name: Codecov
         uses: codecov/codecov-action@v3
