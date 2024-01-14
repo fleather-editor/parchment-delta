@@ -1,4 +1,4 @@
-[![build](https://github.com/fleather-editor/parchment-delta/actions/workflows/build.yml/badge.svg)](https://github.com/fleather-editor/parchment-delta/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/fleather-editor/parchment-delta/graph/badge.svg?token=9JDVTZL4VA)](https://codecov.io/gh/fleather-editor/parchment-delta)
+[![build](https://github.com/fleather-editor/parchment-delta/actions/workflows/build.yml/badge.svg)](https://github.com/fleather-editor/parchment-delta/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/fleather-editor/parchment_delta/graph/badge.svg?token=9JDVTZL4VA)](https://codecov.io/gh/fleather-editor/parchment_delta)
 
 Implementation of Quill editor Delta format in Dart. Refer to official
 [documentation][] for more details.
