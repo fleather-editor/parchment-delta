@@ -1438,7 +1438,7 @@ class Embed {
   Embed(this.data);
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! Embed) return false;
     final typedOther = other;
