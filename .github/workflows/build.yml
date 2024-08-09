@@ -27,7 +27,9 @@ jobs:
           dart pub global run coverage:format_coverage --lcov --in ./coverage --out ./coverage/lcov.info --report-on:lib
 
       - name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           files: ./coverage/lcov.info
           fail_ci_if_error: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
