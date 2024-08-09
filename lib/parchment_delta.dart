@@ -1,5 +1,5 @@
 /// Implementation of Quill Delta format in Dart.
-library quill_delta;
+library parchment_delta;
 
 import 'dart:math' as math;
 import 'dart:math';
@@ -307,7 +307,7 @@ class Delta {
   Operation get last => _operations.last;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! Delta) return false;
     final comparator =
